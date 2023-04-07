@@ -7,6 +7,10 @@
 wget -N --no-check-certificate https://raw.githubusercontent.com/Misaka-blog/Sing-box-Reality/main/reality.sh && bash reality.sh
 ```
 
+## 鸣谢
+
+* BoxXt 的 Sing-box Reality 项目：https://github.com/BoxXt/installReality
+
 ## 赞助
 
 爱发电：https://afdian.net/a/Misaka-blog

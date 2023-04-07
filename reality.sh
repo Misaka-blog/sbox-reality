@@ -205,6 +205,8 @@ EOF
 }
 
 uninstall_singbox(){
+    systemctl stop sing-box >/dev/null 2>&1
+    systemctl disable sing-box >/dev/null 2>&1
     ${PACKAGE_UNINSTALL} sing-box
     rm -rf /root/sing-box
     green "Sing-box 已彻底卸载成功！"

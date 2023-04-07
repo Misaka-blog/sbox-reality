@@ -129,11 +129,11 @@ install_singbox(){
             ],
             "tls": {
                 "enabled": true,
-                "server_name": "www.microsoft.com",
+                "server_name": "$dest_server",
                 "reality": {
                     "enabled": true,
                     "handshake": {
-                        "server": "www.microsoft.com",
+                        "server": "$dest_server",
                         "server_port": 443
                     },
                     "private_key": "$private_key",

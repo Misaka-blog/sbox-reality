@@ -4,7 +4,7 @@
 
 
 ```shell
-wget -N --no-check-certificate https://raw.githubusercontent.com/Misaka-blog/Sing-box-Reality/main/reality.sh && bash reality.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/Misaka-blog/sbox-reality/main/reality.sh && bash reality.sh
 ```
 
 ## 鸣谢

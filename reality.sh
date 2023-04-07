@@ -188,8 +188,53 @@ EOF
 
     mkdir /root/sing-box >/dev/null 2>&1
 
+    # 生成 vless 分享链接及 Clash Meta 配置文件
     share_link="vless://$UUID@$IP:$port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$dest_server&fp=chrome&pbk=$public_key&sid=$short_id&type=tcp&headerType=none#Misaka-Reality"
     echo ${share_link} > /root/sing-box/share-link.txt
+    cat << EOF > /root/sing-box/clash-meta.yaml
+mixed-port: 7890
+external-controller: 127.0.0.1:9090
+allow-lan: false
+mode: rule
+log-level: debug
+ipv6: true
+
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  enhanced-mode: fake-ip
+  nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 114.114.114.114
+
+proxies:
+  - name: Misaka-Reality
+    type: vless
+    server: $IP
+    port: $port
+    uuid: $UUID
+    network: tcp
+    tls: true
+    udp: true
+    xudp: true
+    flow: xtls-rprx-vision
+    servername: $dest_server
+    reality-opts:
+      public-key: "$public_key"
+      short-id: "$short_id"
+    client-fingerprint: chrome
+
+proxy-groups:
+  - name: Proxy
+    type: select
+    proxies:
+      - Misaka-Reality
+      
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,Proxy
+EOF
 
     systemctl start sing-box >/dev/null 2>&1
     systemctl enable sing-box >/dev/null 2>&1
@@ -202,6 +247,7 @@ EOF
 
     yellow "下面是 Sing-box Reality 的分享链接，并已保存至 /root/sing-box/share-link.txt"
     red $share_link
+    yellow "Clash Meta 配置文件已保存至 /root/sing-box/clash-meta.yaml"
 }
 
 uninstall_singbox(){

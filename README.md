@@ -1,4 +1,4 @@
-# Sing-box-Reality
+# sbox-reality
 
 基于 Sing-box 内核的 VLESS Reality 协议脚本
 

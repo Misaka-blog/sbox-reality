@@ -188,7 +188,7 @@ EOF
 
     mkdir /root/sing-box >/dev/null 2>&1
 
-    share_link="vless://$UUID@$IP:$port?encryption=none&flow=xtls-rprx-vision&security=reality&fp=chrome&pbk=$public_key&sid=$short_id&type=tcp&headerType=none&host=www.microsoft.com#Misaka-Reality"
+    share_link="vless://$UUID@$IP:$port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$dest_server&fp=chrome&pbk=$public_key&sid=$short_id&type=tcp&headerType=none#Misaka-Reality"
     echo ${share_link} > /root/sing-box/share-link.txt
 
     systemctl start sing-box >/dev/null 2>&1

@@ -94,8 +94,8 @@ install_singbox(){
     done
     read -rp "请输入 UUID [可留空待脚本生成]: " UUID
     [[ -z $UUID ]] && UUID=$(sing-box generate uuid)
-    read -rp "请输入配置回落的域名 [默认微软官网]: " dest_server
-    [[ -z $dest_server ]] && dest_server="www.microsoft.com"
+    read -rp "请输入配置回落的域名 [默认世嘉官网]: " dest_server
+    [[ -z $dest_server ]] && dest_server="www.sega.com"
 
     # Reality short-id
     short_id=$(openssl rand -hex 8)
@@ -305,7 +305,7 @@ changedest(){
     old_dest=$(cat /etc/sing-box/config.json | grep server | sed -n 1p | awk -F ": " '{print $2}' | sed "s/\"//g" | sed "s/,//g")
 
     read -rp "请输入配置回落的域名 [默认微软官网]: " dest_server
-    [[ -z $dest_server ]] && dest_server="www.microsoft.com"
+    [[ -z $dest_server ]] && dest_server="www.sega.com"
 
     sed -i "s/$old_dest/$dest_server/g" /etc/sing-box/config.json
     sed -i "s/$old_dest/$dest_server/g" /root/sing-box/share-link.txt
